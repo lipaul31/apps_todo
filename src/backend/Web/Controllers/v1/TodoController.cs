@@ -11,6 +11,7 @@ namespace TodoApp.Web.Controllers.v1
 {
     [ApiController]
     [Route("v1/todo")]
+    [Produces("application/json")]
     public class TodoController : ControllerBase
     {
         private readonly ILogger<TodoController> _logger;
