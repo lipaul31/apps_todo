@@ -3,7 +3,18 @@ services:
   backend:
     container_name: todoapp_backend
     build: ./src/backend/
+    depends_on:
+      - "database"
     ports:
       - 8080:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+  database:
+    container_name: todoapp_database
+    image: postgres:13
+    volumes: 
+      - ./.data:/var/lib/postgresql/data
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
