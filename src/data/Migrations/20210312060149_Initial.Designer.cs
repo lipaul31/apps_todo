@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TodoApp.Repository.Database;
+using TodoApp.Data.Database;
 
-namespace TodoApp.Repository.Database.Migrations
+namespace TodoApp.Data.Migrations
 {
     [DbContext(typeof(TodoAppDbContext))]
-    [Migration("20210312050246_Initial")]
+    [Migration("20210312060149_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace TodoApp.Repository.Database.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("TodoApp.Repository.Models.TodoItem", b =>
+            modelBuilder.Entity("TodoApp.Data.Models.TodoItem", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

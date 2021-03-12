@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TodoApp.Repository.Database;
+using TodoApp.Data.Database;
 
-namespace TodoApp.Repository.Database.Migrations
+namespace TodoApp.Data.Migrations
 {
     [DbContext(typeof(TodoAppDbContext))]
     partial class TodoAppDbContextModelSnapshot : ModelSnapshot
@@ -18,7 +18,7 @@ namespace TodoApp.Repository.Database.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("TodoApp.Repository.Models.TodoItem", b =>
+            modelBuilder.Entity("TodoApp.Data.Models.TodoItem", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
