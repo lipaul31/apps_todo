@@ -1,5 +1,5 @@
 # Docker volume
-.data/
+.data-volume/
 
 # Created by https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=csharp,visualstudio,visualstudiocode

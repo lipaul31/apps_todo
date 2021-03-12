@@ -33,10 +33,7 @@ namespace TodoApp
             });
 
             services.AddControllers();
-            services.AddEntityFrameworkNpgsql().AddDbContext<TodoAppDbContext>(o =>
-            {
-                o.UseNpgsql(Configuration.GetConnectionString("TodoAppDbConnection"));
-            });
+            services.AddEntityFrameworkNpgsql().AddDbContext<TodoAppDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

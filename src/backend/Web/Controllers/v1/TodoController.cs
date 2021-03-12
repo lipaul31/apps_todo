@@ -53,7 +53,7 @@ namespace TodoApp.Web.Controllers.v1
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public IActionResult Get([FromRoute]int id)
+        public IActionResult Get([FromRoute]long id)
         {
             var response = new TodoItemResponse();
             
@@ -93,7 +93,7 @@ namespace TodoApp.Web.Controllers.v1
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public IActionResult ChangeState([FromRoute]string id, [FromBody]bool state)
+        public IActionResult ChangeState([FromRoute]long id, [FromBody]bool state)
         {            
             return NoContent();
         }
@@ -114,7 +114,7 @@ namespace TodoApp.Web.Controllers.v1
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public IActionResult Change([Required][FromRoute]string id, [FromBody]TodoItemPutRequest request)
+        public IActionResult Change([Required][FromRoute]long id, [FromBody]TodoItemPutRequest request)
         {         
             return NoContent();
         }
@@ -132,7 +132,7 @@ namespace TodoApp.Web.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public IActionResult Delete([FromRoute]string id)
+        public IActionResult Delete([FromRoute]long id)
         {            
             return NoContent();
         }
