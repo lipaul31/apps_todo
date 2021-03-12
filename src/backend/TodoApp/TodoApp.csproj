@@ -21,6 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\data\TodoApp.Data.csproj" />
+    <ProjectReference Include="..\TodoApp.Data\TodoApp.Data.csproj" />
   </ItemGroup>
 </Project>

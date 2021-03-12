@@ -9,6 +9,8 @@ services:
       - 8080:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - 'ConnectionStrings__TodoAppDbConnection=Host=database;Port=5432;Database=todoapp;Username=postgres;Password=postgres'
+    command: ["./wait-for-it.sh", "database:5432", "--", "python", "app.py"]
   database:
     container_name: todoapp_database
     image: postgres:13
