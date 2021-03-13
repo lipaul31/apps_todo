@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TodoApp.Data.Database;
+using TodoApp.Service;
+using TodoApp.Store;
 
 namespace TodoApp
 {
@@ -32,6 +34,9 @@ namespace TodoApp
 
             services.AddControllers();
             services.AddEntityFrameworkNpgsql().AddDbContext<TodoAppDbContext>();
+
+            services.AddScoped<ITodoService, TodoService>();
+            services.AddScoped<ITodoStore, TodoStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

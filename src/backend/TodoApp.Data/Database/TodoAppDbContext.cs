@@ -26,14 +26,12 @@ namespace TodoApp.Data.Database
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            _logger.LogDebug("Configuring DbContext...");
-            
+        {            
             var connection = _configuration.GetConnectionString("TodoAppDbConnection");
             optionsBuilder.UseNpgsql(connection);
 
             optionsBuilder.UseLoggerFactory(_loggerFactory);
-            optionsBuilder.LogTo(message => _logger.LogDebug(message), LogLevel.Debug);
+            optionsBuilder.LogTo(message => _logger.LogInformation(message), LogLevel.Information);
         }
     }
 }
