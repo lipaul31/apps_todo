@@ -10,17 +10,16 @@ namespace TodoApp.Data.Database
         private readonly ILogger<TodoAppDbContext> _logger;
         private readonly IConfiguration _configuration;
 
-        public TodoAppDbContext(ILogger<TodoAppDbContext> logger)
-        {
-            _logger = logger;
-        }
-
         public DbSet<TodoItem> TodoItems { get; set; }
 
-        public TodoAppDbContext(DbContextOptions<TodoAppDbContext> options, IConfiguration configuration)
+        public TodoAppDbContext(
+            DbContextOptions<TodoAppDbContext> options, 
+            IConfiguration configuration,
+            ILogger<TodoAppDbContext> logger)
             : base(options)
         {
             _configuration = configuration;
+            _logger = logger;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
