@@ -1,0 +1,2 @@
+
+console.warn(window.backendApiUrl);

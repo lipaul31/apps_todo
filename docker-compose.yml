@@ -1,5 +1,17 @@
 version: "3.8"
-services: 
+services:
+  frontend:
+    container_name: todoapp_frontend
+    build: ./src/frontend/
+    depends_on:
+      - backend
+    volumes:
+      - ./src/frontend/public:/app/public
+      - ./src/frontend/views:/app/views
+    ports:
+      - 5001:80
+    environment:
+      - "BACKEND_API_URL=http://localhost:5000"
   backend:
     container_name: todoapp_backend
     build: ./src/backend/
@@ -10,19 +22,19 @@ services:
       - 5000:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - 'ConnectionStrings__TodoAppDbConnection=Host=database;Port=5432;Database=todoapp;Username=postgres;Password=postgres'
+      - "ConnectionStrings__TodoAppDbConnection=Host=database;Port=5432;Database=todoapp;Username=postgres;Password=postgres"
   database:
     container_name: todoapp_database
     image: postgres:13
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
       timeout: 45s
       interval: 10s
       retries: 10
     restart: always
-    volumes: 
+    volumes:
       - ./.db:/var/lib/postgresql/data
-    ports: 
+    ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=postgres
