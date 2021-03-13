@@ -7,7 +7,8 @@ namespace TodoApp.Data.Database
 {
     public class TodoAppDbContext : DbContext
     {
-        private readonly ILogger<TodoAppDbContext> _logger;
+        private readonly ILogger<TodoAppDbContext> _logger; 
+        private readonly ILoggerFactory _loggerFactory; 
         private readonly IConfiguration _configuration;
 
         public DbSet<TodoItem> TodoItems { get; set; }
@@ -15,18 +16,24 @@ namespace TodoApp.Data.Database
         public TodoAppDbContext(
             DbContextOptions<TodoAppDbContext> options, 
             IConfiguration configuration,
-            ILogger<TodoAppDbContext> logger)
+            ILogger<TodoAppDbContext> logger,
+            ILoggerFactory loggerFactory)
             : base(options)
         {
             _configuration = configuration;
             _logger = logger;
+            _loggerFactory = loggerFactory;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            _logger.LogDebug("Configuring DbContext...");
+            
             var connection = _configuration.GetConnectionString("TodoAppDbConnection");
-            _logger.LogWarning(connection);
             optionsBuilder.UseNpgsql(connection);
-        } 
+
+            optionsBuilder.UseLoggerFactory(_loggerFactory);
+            optionsBuilder.LogTo(message => _logger.LogDebug(message), LogLevel.Debug);
+        }
     }
 }
