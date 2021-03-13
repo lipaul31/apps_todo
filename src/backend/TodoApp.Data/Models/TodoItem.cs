@@ -8,6 +8,7 @@ namespace TodoApp.Data.Models
     {
         [Key]
         public long Id { get; set; }
+        [MaxLength(100)]
         public string Description { get; set; }
         public bool State { get; set; } = false;
     }
