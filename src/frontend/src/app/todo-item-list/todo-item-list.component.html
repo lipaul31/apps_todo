@@ -1,0 +1,20 @@
+<div>
+    <label id="todo-item-description">Description: </label>
+    <input for="todo-item-description" #todoItemDescription />
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button class="add-button" (click)="add(todoItemDescription.value); todoItemDescription.value=''">
+        Add hero
+    </button>
+</div>
+<ul class="todo-items">
+    <li *ngFor="let todoItem of todoItemsList" [class.selected]="todoItem == selectedTodoItem">
+        <input (change)="onCheckItem(todoItem)" type="checkbox" [checked]="todoItem.state"/>
+        <span (click)="onSelect(todoItem)" class="badge">{{todoItem.description}}</span>
+
+        <div *ngIf="todoItem == selectedTodoItem">
+            <app-todo-item-details [todo-item]="todoItem"></app-todo-item-details>
+        </div>
+        <button class="delete" title="delete todo item" (click)="delete(todoItem)">x</button>
+    </li>
+</ul>

@@ -6,12 +6,9 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./src/frontend/public:/app/public
-      - ./src/frontend/views:/app/views
+      - ./src/frontend/src:/app/src
     ports:
-      - 5001:80
-    environment:
-      - "BACKEND_API_URL=http://localhost:5000"
+      - 4201:4201
   backend:
     container_name: todoapp_backend
     build: ./src/backend/
@@ -23,6 +20,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings__TodoAppDbConnection=Host=database;Port=5432;Database=todoapp;Username=postgres;Password=postgres"
+      - "Cors__AllowedOrigins__0:http://localhost:4201"
   database:
     container_name: todoapp_database
     image: postgres:13

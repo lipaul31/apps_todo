@@ -1,0 +1,8 @@
+<p>todo-item-details works!</p>
+<div *ngIf="todoItem">
+    <p>{{todoItem.id}}</p>
+    <p>{{todoItem.description}}</p>
+    <p>{{todoItem.state}}</p>
+    <input id="todo-description" [(ngModel)]="todoItem.description" placeholder="Todo item description"/>
+    <button (click)="save()">save</button>
+</div>

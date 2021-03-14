@@ -1,14 +1,12 @@
-FROM node:12
-
-ENV PORT=80
+FROM node:12 as node
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
 
 COPY . .
 
-EXPOSE ${PORT}
-CMD [ "node", "server.js" ]
+EXPOSE 4201
+CMD [ "npm", "run", "start" ]
