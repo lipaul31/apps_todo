@@ -40,7 +40,9 @@ namespace TodoApp
             {
                 setup.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins(todoAppConfiguration.Cors.AllowedOrigins);
+                    policy.WithOrigins(todoAppConfiguration.Cors.AllowedOrigins)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
             });
 
