@@ -57,7 +57,12 @@ export class TodoItemListComponent implements OnInit {
   }
   getTodoItems(): void {
     this.todoItemService.getTodoItems()
-      .subscribe(result => this.todoItemsList = result.sort((a, b) => a.id > b.id ? 0 : 1));
+      .subscribe(result => {
+        this.todoItemsList = result.sort((a, b) => a.id > b.id ? 0 : 1);
+
+        this.selectedTodoItemUpdate = undefined;
+        this.selectedTodoItemId = undefined;
+      });
   }
 
   delete(todoItem: TodoItem): void {

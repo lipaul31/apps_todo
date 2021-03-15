@@ -5,7 +5,7 @@
             <input class="form-control" type="text" placeholder="Type an item description" maxlength="100"
                 [(ngModel)]="todoItemDescription" (keyup.enter)="add(todoItemDescription); todoItemDescription=''" />
         </div>
-        <div class="col-1" *ngIf="todoItemDescription">
+        <div class="col-1 add-actions" *ngIf="todoItemDescription">
             <a class="add-button" (click)="add(todoItemDescription); todoItemDescription=''">
                 <i class="fas fa-plus-square"></i>
             </a>

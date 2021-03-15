@@ -3,10 +3,16 @@ $li-item-background-color: #0d6efd1c;
 $li-item-completed-background-color: #c4cbd9;
 
 .todo-item-list {
-    a.add-button {
-        cursor: pointer;
-        i {
-            font-size: 35px;
+    .add-actions {
+        max-width: max-content;
+        min-width: min-content;
+        text-align: end;
+        
+        a.add-button {
+            cursor: pointer;
+            i {
+                font-size: 35px;
+            }
         }
     }
 

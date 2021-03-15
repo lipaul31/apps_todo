@@ -1,7 +1,16 @@
 # apps_todo
-application designed to manage to-do tasks
+Application designed to manage to-do tasks
 
-# Migrations
-Navigate to `src/data` and then:
-- Adding a new migration: `dotnet ef migrations add [MIGRATION_NAME]`
-- Updating database to with latest changes: `dotnet ef database update`
+# Running the app
+The only thing required to run the `TodoApp` is `docker`. After this perform the following action:
+- navigate to root folder
+- execute `docker-compose up`
+
+# App overview
+- Backend
+  - Database: Postgres + Entity Framework Migrations
+  - Api Server: NET 5 web api
+- Frontend
+  - Web Server: NodeJS
+  - UI: AngularJS
+
