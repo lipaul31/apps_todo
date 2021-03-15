@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { TodoItem } from '../_models/todo-item';
 import { TodoItemService } from "../_services/todo-item.service";
 
@@ -10,6 +10,7 @@ import { TodoItemService } from "../_services/todo-item.service";
 export class TodoItemDetailsComponent implements OnInit {
 
   @Input("todo-item") todoItem?: TodoItem;
+  @Output() itemUpdated = new EventEmitter<boolean>();
 
   constructor(private todoItemService: TodoItemService) { }
 
@@ -18,7 +19,11 @@ export class TodoItemDetailsComponent implements OnInit {
 
   save(): void {
     this.todoItemService.updateTodoItem(this.todoItem)
-      .subscribe(() => console.log('save finished'));
+      .subscribe(() => {
+        this.itemUpdated.emit(true);
+      });
   }
-
+  cancel(): void {
+    this.itemUpdated.emit(false);
+  }
 }

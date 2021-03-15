@@ -1,47 +1,63 @@
-/* Component's private CSS styles */
+$text-color: #4b636e;
+$li-item-background-color: #0d6efd1c;
+$li-item-completed-background-color: #c4cbd9;
 
-li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #eee;
-    margin: 0.5em;
-    padding: 0.3em 0;
-    // height: 1.6em;
-    border-radius: 4px;
-}
-li:hover {
-    color: #2c3a41;
-    background-color: #e6e6e6;
-    left: 0.1em;
-}
-li.selected {
-    background-color: black;
-    color: white;
-}
-li.selected:hover {
-    background-color: #505050;
-    color: white;
-}
-li.selected:active {
-    background-color: black;
-    color: white;
-}
-//   . .badge {
-//     display: inline-block;
-//     font-size: small;
-//     color: white;
-//     padding: 0.8em 0.7em 0 0.7em;
-//     background-color:#405061;
-//     line-height: 1em;
-//     position: relative;
-//     left: -1px;
-//     top: -4px;
-//     height: 1.8em;
-//     margin-right: .8em;
-//     border-radius: 4px 0 0 4px;
-//   }
+.todo-item-list {
+    a.add-button {
+        cursor: pointer;
+        i {
+            font-size: 35px;
+        }
+    }
 
-input {
-    padding: 0.5rem;
+    .empty-list,
+    .loading-list {
+        text-align: center;
+        font-size: 30px;
+    }
+    .loading-list {
+        animation-name: spin;
+        animation-duration: 2000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    ul {
+        li {
+            cursor: pointer;
+            color: $text-color;
+            padding-left: 0;
+            padding-right: 0;
+
+            &.list-group-item {
+                &.active {
+                    color: $text-color;
+                    background-color: $li-item-background-color;
+                }
+            }
+
+            label {
+                user-select: none;
+            }
+
+            .item-actions {
+                display: flex;
+                width: 100px;
+                justify-content: space-around;
+                text-align: center;
+
+                a {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

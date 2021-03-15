@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TodoItemService } from "../_services/todo-item.service";
-import { MessageService } from '../_services/message.service';
 import { TodoItem, TodoItemAdd } from '../_models/todo-item';
 
 @Component({
@@ -11,27 +10,42 @@ import { TodoItem, TodoItemAdd } from '../_models/todo-item';
 })
 export class TodoItemListComponent implements OnInit {
 
-  selectedTodoItem?: TodoItem;
+  todoItemDescription?: string;
+  selectedTodoItemId?: number;
+  selectedTodoItemUpdate?: TodoItem;
   todoItemsList: TodoItem[];
 
   constructor(
-    private todoItemService: TodoItemService,
-    public messageService: MessageService) { }
+    private todoItemService: TodoItemService) { }
 
   ngOnInit(): void {
     this.getTodoItems();
   }
 
-  onSelect(todoItem: TodoItem): void {
-    if (this.selectedTodoItem == todoItem) {
-      this.selectedTodoItem = undefined;
+  onSelect(todoItemId: number): void {
+
+    if (this.selectedTodoItemUpdate && this.selectedTodoItemUpdate.id == todoItemId) {
       return;
     }
-    this.selectedTodoItem = todoItem;
+
+    if (this.selectedTodoItemId == todoItemId) {
+      this.selectedTodoItemId = undefined;
+      return;
+    }
+
+    this.selectedTodoItemUpdate = undefined;
+    this.selectedTodoItemId = todoItemId;
   }
   onCheckItem(todoItem: TodoItem): void {
     let newState = !todoItem.state;
     this.todoItemService.updateTodoItemState(todoItem.id, newState).subscribe();
+  }
+  onItemUpdate(updated: boolean): void {
+    if (updated) {
+      this.getTodoItems();
+    }
+    this.selectedTodoItemUpdate = undefined;
+    this.selectedTodoItemId = undefined;
   }
 
   add(description: string): void {
@@ -43,11 +57,10 @@ export class TodoItemListComponent implements OnInit {
   }
   getTodoItems(): void {
     this.todoItemService.getTodoItems()
-      .subscribe(result => this.todoItemsList = result);
-  }
-  delete(todoItem: TodoItem): void {
-    this.todoItemsList = this.todoItemsList.filter(x => x.id !== todoItem.id);
-    this.todoItemService.deleteTodoItemState(todoItem.id).subscribe();
+      .subscribe(result => this.todoItemsList = result.sort((a, b) => a.id > b.id ? 0 : 1));
   }
 
+  delete(todoItem: TodoItem): void {
+    this.todoItemService.deleteTodoItemState(todoItem.id).subscribe(() => this.getTodoItems());
+  }
 }

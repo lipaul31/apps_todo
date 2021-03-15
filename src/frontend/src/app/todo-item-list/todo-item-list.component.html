@@ -1,20 +1,58 @@
-<div>
-    <label id="todo-item-description">Description: </label>
-    <input for="todo-item-description" #todoItemDescription />
+<div class="todo-item-list">
 
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button class="add-button" (click)="add(todoItemDescription.value); todoItemDescription.value=''">
-        Add hero
-    </button>
-</div>
-<ul class="todo-items">
-    <li *ngFor="let todoItem of todoItemsList" [class.selected]="todoItem == selectedTodoItem">
-        <input (change)="onCheckItem(todoItem)" type="checkbox" [checked]="todoItem.state"/>
-        <span (click)="onSelect(todoItem)" class="badge">{{todoItem.description}}</span>
-
-        <div *ngIf="todoItem == selectedTodoItem">
-            <app-todo-item-details [todo-item]="todoItem"></app-todo-item-details>
+    <div class="row ">
+        <div class="col">
+            <input class="form-control" type="text" placeholder="Type an item description" maxlength="100"
+                [(ngModel)]="todoItemDescription" (keyup.enter)="add(todoItemDescription); todoItemDescription=''" />
         </div>
-        <button class="delete" title="delete todo item" (click)="delete(todoItem)">x</button>
-    </li>
-</ul>
+        <div class="col-1" *ngIf="todoItemDescription">
+            <a class="add-button" (click)="add(todoItemDescription); todoItemDescription=''">
+                <i class="fas fa-plus-square"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <ul class="list-group" *ngIf="todoItemsList">
+                <li class="list-group-item" [class.active]="todoItem.id == selectedTodoItemId"
+                    *ngFor="let todoItem of todoItemsList" (click)="onSelect(todoItem.id)">
+
+                    <div *ngIf="todoItem != selectedTodoItemUpdate"
+                        class="row m-0 justify-content-between align-items-center">
+                        <div class="col">
+                            <div class="form-check">
+                                <input class="form-check-input" (click)="$event.stopPropagation()"
+                                    (change)="onCheckItem(todoItem);$event.stopPropagation()" type="checkbox"
+                                    [checked]="todoItem.state" />
+                                <label class="form-check-label">{{todoItem.description}}</label>
+                            </div>
+                        </div>
+                        <div class="col-2 item-actions" *ngIf="todoItem.id == selectedTodoItemId">
+                            <a class="update" title="update {{todoItem.description}}"
+                                (click)="selectedTodoItemUpdate=todoItem;$event.stopPropagation()">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <a class="delete" title="delete {{todoItem.description}}"
+                                (click)="delete(todoItem);$event.stopPropagation()">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="todoItem == selectedTodoItemUpdate">
+                        <app-todo-item-details [todo-item]="todoItem" (itemUpdated)="onItemUpdate($event)">
+                        </app-todo-item-details>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="empty-list" *ngIf="todoItemsList && todoItemsList.length == 0">
+                <i class="far fa-hand-point-up" title="Give it a try :)"></i>
+            </div>
+            <div class="loading-list" *ngIf="!todoItemsList">
+                <i class="fas fa-spinner"></i>
+            </div>
+        </div>
+    </div>
+</div>

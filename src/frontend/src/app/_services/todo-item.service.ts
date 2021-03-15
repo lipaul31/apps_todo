@@ -4,7 +4,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { TodoItem, TodoItemAdd } from "../_models/todo-item";
-import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +17,7 @@ export class TodoItemService {
   };
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+    private http: HttpClient) { }
 
   /** GET: get TODO ITEMS from the server */
   getTodoItems(filter?: string): Observable<TodoItem[]> {
@@ -76,7 +74,7 @@ export class TodoItemService {
   }
 
   private pushMessage(message: string) {
-    this.messageService.add(`TodoItemService: ${message}`);
+    console.log(`TodoItemService: ${message}`);
   }
 
   /**

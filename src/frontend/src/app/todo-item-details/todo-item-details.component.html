@@ -1,8 +1,14 @@
-<p>todo-item-details works!</p>
-<div *ngIf="todoItem">
-    <p>{{todoItem.id}}</p>
-    <p>{{todoItem.description}}</p>
-    <p>{{todoItem.state}}</p>
-    <input id="todo-description" [(ngModel)]="todoItem.description" placeholder="Todo item description"/>
-    <button (click)="save()">save</button>
+<div class="todo-item-details row m-0" *ngIf="todoItem">
+    <div class="col">
+        <input class="form-control" type="text" [(ngModel)]="todoItem.description" (click)="$event.stopPropagation()"
+            (keyup.enter)="save()" />
+    </div>
+    <div class="col-2 item-actions">
+        <a class="save" title="save {{todoItem.description}}" (click)="save();$event.stopPropagation()">
+            <i class="fas fa-check"></i>
+        </a>
+        <a class="cancel" title="cancel update" (click)="cancel();$event.stopPropagation()">
+            <i class="fas fa-times"></i>
+        </a>
+    </div>
 </div>
