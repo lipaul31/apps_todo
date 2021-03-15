@@ -16,5 +16,5 @@ The only thing required to run the `TodoApp` is `docker`. After this perform the
   - Api Server: NET 5 web api
 - Frontend
   - Web Server: NodeJS
-  - UI: AngularJS
+  - UI: Angular
 
