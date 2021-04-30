@@ -7,7 +7,7 @@ using Microsoft.OpenApi.Models;
 using TodoApp.Configuration;
 using TodoApp.Data.Database;
 using TodoApp.Service;
-using TodoApp.Store;
+using TodoApp.Repository;
 
 namespace TodoApp
 {
@@ -50,7 +50,7 @@ namespace TodoApp
             services.AddEntityFrameworkNpgsql().AddDbContext<TodoAppDbContext>();
 
             services.AddScoped<ITodoService, TodoService>();
-            services.AddScoped<ITodoStore, TodoStore>();
+            services.AddScoped<ITodoRepository, TodoRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

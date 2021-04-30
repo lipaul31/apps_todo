@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TodoApp.Data.Models;
 
-namespace TodoApp.Store 
+namespace TodoApp.Repository
 {
-    public interface ITodoStore 
+    public interface ITodoRepository 
     {
         Task<TodoItem> GetAsync(long id);
         IQueryable<TodoItem> List(string descriptionFilter);

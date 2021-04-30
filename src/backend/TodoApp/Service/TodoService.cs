@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using TodoApp.Data.Models;
-using TodoApp.Store;
+using TodoApp.Repository;
 using TodoApp.Web.Controllers.v1;
 using System.Linq;
 
@@ -11,8 +11,8 @@ namespace TodoApp.Service
     public class TodoService : ITodoService
     {
         private readonly ILogger<TodoService> _logger;
-        private readonly ITodoStore _store;
-        public TodoService(ILogger<TodoService> logger, ITodoStore store)
+        private readonly ITodoRepository _store;
+        public TodoService(ILogger<TodoService> logger, ITodoRepository store)
         {
             _logger = logger;
             _store = store;

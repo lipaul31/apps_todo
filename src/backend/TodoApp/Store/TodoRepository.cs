@@ -4,14 +4,14 @@ using Microsoft.Extensions.Logging;
 using TodoApp.Data.Database;
 using TodoApp.Data.Models;
 
-namespace TodoApp.Store
+namespace TodoApp.Repository
 {
-    public class TodoStore : ITodoStore
+    public class TodoRepository : ITodoRepository
     {
-        private readonly ILogger<TodoStore> _logger;
+        private readonly ILogger<TodoRepository> _logger;
         private readonly TodoAppDbContext _context;
 
-        public TodoStore(TodoAppDbContext context, ILogger<TodoStore> logger)
+        public TodoRepository(TodoAppDbContext context, ILogger<TodoRepository> logger)
         {
             _context = context;
             _logger = logger;
