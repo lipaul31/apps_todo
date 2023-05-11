@@ -16,7 +16,7 @@ services:
       database:
         condition: service_healthy
     ports:
-      - 5000:80
+      - 5555:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings__TodoAppDbConnection=Host=database;Port=5432;Database=todoapp;Username=postgres;Password=postgres"

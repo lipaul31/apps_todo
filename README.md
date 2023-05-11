@@ -9,7 +9,7 @@ The only thing required to run the `TodoApp` is `docker`. After this perform the
   - it might prompt you for permissions to watch the code folders
   - when the `backend` app comes up it will apply the database migrations to initialize the db schema
   - when the `frontend` app comes up it will build the Angular app.
-- access the backend api on `http://localhost:5000/swagger/index.html`
+- access the backend api on `http://localhost:5555/swagger/index.html`
 - access the frontend url on `http://localhost:4201`
 
 # App overview

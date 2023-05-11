@@ -2,7 +2,7 @@
 
     <div class="row ">
         <div class="col">
-            <input class="form-control" type="text" placeholder="Type an item description" maxlength="100"
+            <input class="form-control" type="text" placeholder="Add todo item description" maxlength="100"
                 [(ngModel)]="todoItemDescription" (keyup.enter)="add(todoItemDescription); todoItemDescription=''" />
         </div>
         <div class="col-1 add-actions" *ngIf="todoItemDescription">
